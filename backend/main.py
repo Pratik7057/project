@@ -51,6 +51,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Middleware to block sensitive paths
+@app.middleware("http")
+async def block_sensitive_paths(request: Request, call_next):
+    blocked_paths = ["/.env", "/config.env", "/.git", "/.htaccess", "/.dockerignore"]
+    if request.url.path in blocked_paths:
+        raise HTTPException(status_code=404, detail="Not found")
+    return await call_next(request)
+
 # Legacy file-based API key management (kept for backward compatibility)
 API_KEYS_FILE = "api_keys.json"
 
