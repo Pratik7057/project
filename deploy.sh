@@ -1,13 +1,8 @@
 #!/bin/bash
-# Deployment s# Show status
-echo "✅ Deployment completed!"
-echo "🔗 Your frontend is now available at: https://radhaapi.me"
-echo "🔌 Your API is now available at: https://api.radhaapi.me"
-echo "🔒 To set up SSL: Run \"docker exec -it $CONTAINER_ID certbot --nginx -d radhaapi.me -d www.radhaapi.me -d api.radhaapi.me\""
-echo "📋 To check logs: docker-compose logs -f" for Radha Music API on a VPS
+# Deployment script for Radha Music API on a VPS
 # Usage: ./deploy.sh
 
-echo "📦 Deploying Music API to VPS (radhaapi.me)..."
+echo "📦 Deploying Music API to VPS (www.Radhaapi.me)..."
 
 # Check if docker-compose is installed
 if ! command -v docker-compose &> /dev/null; then
@@ -31,6 +26,7 @@ CONTAINER_ID=$(docker-compose ps -q music-api)
 
 # Show status
 echo "✅ Deployment completed!"
-echo "🔗 Your API is now available at: https://radhaapi.me"
-echo "� To set up SSL: Run \"docker exec -it $CONTAINER_ID certbot --nginx -d radhaapi.me -d www.radhaapi.me\""
+echo "🔗 Your frontend is now available at: https://www.Radhaapi.me"
+echo "🔌 Your API is now available at: https://api.radhaapi.me"
+echo "🔒 To set up SSL: Run \"docker exec -it $CONTAINER_ID certbot --nginx -d www.Radhaapi.me -d api.radhaapi.me\""
 echo "📋 To check logs: docker-compose logs -f"
