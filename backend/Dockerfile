@@ -9,11 +9,7 @@ WORKDIR /app
 COPY . /app/
 
 # Create directory for frontend files
-RUN mkdir -p /app/frontend
-
-# Assuming frontend files will be copied in via a volume or during build
-# You need to run this Dockerfile from the project root, not from the backend directory
-COPY ../frontend /app/frontend/
+RUN mkdir -p /usr/share/nginx/html
 
 # Install requirements
 RUN pip install -r requirements.txt
