@@ -4,9 +4,7 @@ services:
   music-api:
     build: .
     ports:
-      - "80:80"
-      - "443:443"
-      - "8000:8000"
+      - "8000:80"     # host:container
     volumes:
       - ./backend/downloads:/app/downloads
       - ./ssl:/app/ssl
