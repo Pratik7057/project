@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  music-api:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8000:8000"
+    volumes:
+      - ./backend/downloads:/app/downloads
+      - ./ssl:/app/ssl
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
+      - DOMAIN=radhaapi.me
+      - API_DOMAIN=api.radhaapi.me
+      - PORT=8000
+      - HOST=0.0.0.0

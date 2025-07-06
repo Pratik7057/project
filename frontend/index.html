@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Streaming</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-music"></i>
+                <h2>MusicStream</h2>
+            </div>
+            <div class="menu">
+                <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-search"></i> Search</a>
+                <a href="#"><i class="fas fa-heart"></i> Favorites</a>
+                <a href="#"><i class="fas fa-history"></i> Recent</a>
+                <a href="api-key/index.html"><i class="fas fa-key"></i> Generate API Key</a>
+            </div>
+            <div class="api-key-container">
+                <h4>Your API Key</h4>
+                <div class="api-key-field">
+                    <input type="password" id="apiKeyInput" value="your_api_key_here">
+                    <button id="toggleApiKey"><i class="fas fa-eye"></i></button>
+                </div>
+                <button class="save-key-btn" id="saveApiKey">Save Key</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="query" placeholder="Search for songs, artists...">
+                    <button id="searchBtn">Search</button>
+                </div>
+            </div>
+            
+            <div class="current-song-display" id="currentSongDisplay">
+                <h2>Welcome to MusicStream</h2>
+                <p>Search for your favorite songs and start listening!</p>
+            </div>
+            
+            <div class="results-container" id="results">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+        
+        <div class="player" id="player">
+            <!-- Audio player will appear here when a song is selected -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

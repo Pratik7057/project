@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/venv/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+backend/venv/
+venv/
+ENV/
+env/
+
+# Node.js
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+frontend/.npm/
+frontend/.env
+
+# Downloaded media files
+backend/downloads/
+
+# API Keys and sensitive data
+backend/api_keys.json
+.env
+.ssl/
+
+# Logs
+logs/
+*.log
+
+# Docker
+.docker/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db

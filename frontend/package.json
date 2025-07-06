@@ -1,0 +1,11 @@
+{
+  "name": "musicstream-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Music Bot API",
+  "main": "app.js",
+  "scripts": {
+    "start": "echo 'Static site ready!' && echo 'Open https://radhaapi.me to view the site.'"
+  },
+  "author": "",
+  "license": "ISC"
+}
