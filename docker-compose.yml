@@ -4,7 +4,7 @@ services:
   music-api:
     build: .
     ports:
-      - "8000:8000"     # ✅ Correct mapping
+      - "8000:8000"   # ✅ No 80 or 443!
     volumes:
       - ./backend/downloads:/app/downloads
       - ./ssl:/app/ssl
