@@ -2,7 +2,7 @@
 REM Deployment script for Radha Music API on Windows
 REM Usage: deploy.bat
 
-echo 📦 Deploying Music API to VPS (radhaapi.me)...
+echo 📦 Deploying Music API to VPS (www.Radhaapi.me)...
 
 REM Check if Docker is installed and running
 docker info >nul 2>&1
@@ -17,7 +17,7 @@ docker-compose up -d --build
 
 REM Show status
 echo ✅ Deployment completed!
-echo 🔗 Your frontend is now available at: https://radhaapi.me
+echo 🔗 Your frontend is now available at: https://www.Radhaapi.me
 echo 🔌 Your API is now available at: https://api.radhaapi.me
 echo 📋 To check logs: docker-compose logs -f
-echo 🔒 To set up SSL: Run "docker exec -it [container_id] certbot --nginx -d radhaapi.me -d www.radhaapi.me -d api.radhaapi.me"
+echo 🔒 To set up SSL: Run "docker exec -it [container_id] certbot --nginx -d www.Radhaapi.me -d api.radhaapi.me"
