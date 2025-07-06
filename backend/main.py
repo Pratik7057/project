@@ -442,12 +442,17 @@ async def download_by_video_id(video_id: str, request: Request, authorization: O
         pass
 
 # Mount the frontend static files - should be placed at the end of the file
-# Get the parent directory of the current file (backend dir)
-backend_dir = os.path.dirname(os.path.abspath(__file__))
-# Get the parent directory of the backend dir (project root)
-project_root = os.path.dirname(backend_dir)
-# Path to the frontend directory
-frontend_dir = os.path.join(project_root, "frontend")
+# Check if we're in a Docker environment by looking for frontend in different locations
+frontend_dir = "/usr/share/nginx/html"  # Default Docker path for frontend files
+
+# If running locally (not in Docker), use the relative path
+if not os.path.exists(frontend_dir):
+    # Get the parent directory of the current file (backend dir)
+    backend_dir = os.path.dirname(os.path.abspath(__file__))
+    # Get the parent directory of the backend dir (project root)
+    project_root = os.path.dirname(backend_dir)
+    # Path to the frontend directory
+    frontend_dir = os.path.join(project_root, "frontend")
 
 # Create a function to serve the index.html for any non-API routes
 @app.get("/", include_in_schema=False)
