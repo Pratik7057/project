@@ -1,8 +1,28 @@
 @echo off
-REM Deployment script for Radha Music API on Windows
+REM Deployment script for Music API on Windows
 REM Usage: deploy.bat
 
-echo 📦 Deploying Music API to VPS (www.Radhaapi.me)...
+REM Load configuration from config.env file
+if exist "config.env" (
+    for /f "usebackq tokens=1,2 delims==" %%a in ("config.env") do (
+        if /i "%%a"=="DEPLOYMENT_STATUS" set CONFIG_STATUS=%%b
+    )
+) else (
+    set CONFIG_STATUS=DEACTIVATED
+)
+
+REM Configuration Check - Deployment Deactivated
+if "%CONFIG_STATUS%"=="DEACTIVATED" (
+    echo ⚠️  DEPLOYMENT DEACTIVATED
+    echo 🔒 This deployment has been disabled via configuration
+    echo 💡 To enable deployment, edit config.env and change DEPLOYMENT_STATUS to ACTIVATED
+    echo 📁 Config file: config.env
+    echo.
+    pause
+    exit /b 1
+)
+
+echo 📦 Deploying Music API locally...
 
 REM Check if Docker is installed and running
 docker info >nul 2>&1
@@ -17,7 +37,7 @@ docker-compose up -d --build
 
 REM Show status
 echo ✅ Deployment completed!
-echo 🔗 Your frontend is now available at: https://www.Radhaapi.me
-echo 🔌 Your API is now available at: https://api.radhaapi.me
+echo � Your API is now available at: http://localhost:8000
+echo � Your frontend can be accessed through the API at: http://localhost:8000
 echo 📋 To check logs: docker-compose logs -f
-echo 🔒 To set up SSL: Run "docker exec -it [container_id] certbot --nginx -d www.Radhaapi.me -d api.radhaapi.me"
+echo � API Documentation: http://localhost:8000/docs

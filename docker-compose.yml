@@ -4,17 +4,16 @@ services:
   music-api:
     build: .
     ports:
-      - "80:80"
-      - "443:443"
       - "8000:8000"
     volumes:
       - ./backend/downloads:/app/downloads
-      - ./ssl:/app/ssl
+      - ./config.env:/app/config.env
     restart: unless-stopped
     environment:
       - TZ=UTC
-      - DOMAIN=www.Radhaapi.me
-      - API_DOMAIN=api.radhaapi.me
+      - DOMAIN=localhost
+      - API_DOMAIN=localhost
       - PORT=8000
       - HOST=0.0.0.0
-      - SERVER_IP=20.193.146.222
+      - API_STATUS=ACTIVATED
+      - API_STATUS=DEACTIVATED

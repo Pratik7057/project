@@ -41,6 +41,7 @@ backend/downloads/
 # API Keys and sensitive data
 backend/api_keys.json
 .env
+config.env
 .ssl/
 
 # Logs

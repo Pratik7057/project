@@ -1,22 +1,31 @@
-name: Deploy to VPS
+name: Local Build and Test
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     
-    - name: Install SSH key
-      uses: shimataro/ssh-key-action@v2
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+        python-version: '3.9'
         
-    - name: Deploy to VPS
+    - name: Install dependencies
       run: |
-        rsync -avz --delete ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }} --exclude .git --exclude .github
-        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.DEPLOY_PATH }} && chmod +x deploy.sh && ./deploy.sh"
+        cd backend
+        pip install -r requirements.txt
+        
+    - name: Test backend
+      run: |
+        cd backend
+        python -m pytest --version || echo "No tests configured yet"
+        
+    - name: Build Docker image
+      run: |
+        docker build -t music-api:latest .
+        echo "✅ Docker image built successfully for local deployment"

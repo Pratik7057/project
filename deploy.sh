@@ -1,8 +1,19 @@
 #!/bin/bash
-# Deployment script for Radha Music API on a VPS
+# Deployment script for Music API locally
 # Usage: ./deploy.sh
 
-echo "📦 Deploying Music API to VPS (www.Radhaapi.me)..."
+# Configuration Check - Deployment Deactivated
+CONFIG_STATUS="DEACTIVATED"
+if [ "$CONFIG_STATUS" = "DEACTIVATED" ]; then
+    echo "⚠️  DEPLOYMENT DEACTIVATED"
+    echo "🔒 This deployment has been disabled via configuration"
+    echo "💡 To enable deployment, change CONFIG_STATUS to ACTIVATED in this file"
+    echo ""
+    read -p "Press Enter to exit..."
+    exit 1
+fi
+
+echo "📦 Deploying Music API locally..."
 
 # Check if docker-compose is installed
 if ! command -v docker-compose &> /dev/null; then
@@ -26,7 +37,7 @@ CONTAINER_ID=$(docker-compose ps -q music-api)
 
 # Show status
 echo "✅ Deployment completed!"
-echo "🔗 Your frontend is now available at: https://www.Radhaapi.me"
-echo "🔌 Your API is now available at: https://api.radhaapi.me"
-echo "🔒 To set up SSL: Run \"docker exec -it $CONTAINER_ID certbot --nginx -d www.Radhaapi.me -d api.radhaapi.me\""
+echo "� Your API is now available at: http://localhost:8000"
+echo "� Your frontend can be accessed through the API at: http://localhost:8000"
 echo "📋 To check logs: docker-compose logs -f"
+echo "📖 API Documentation: http://localhost:8000/docs"

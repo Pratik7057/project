@@ -41,13 +41,12 @@ This project is designed for local development and deployment. No external serve
 
 ## Access URLs
 
-- API & Frontend: http://localhost:8000 (nginx disabled, using FastAPI only)
+- Frontend: http://localhost (when using Docker) or http://localhost:8080 (manual)
+- API: http://localhost:8000
 - API Documentation: http://localhost:8000/docs
-- Frontend files served by FastAPI backend
 
 ## Security Notes
 
 - This setup is for local development only
-- Nginx has been disabled for simplicity
 - Use environment variables for any sensitive configuration
 - For production deployment, configure proper security measures

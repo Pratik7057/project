@@ -11,9 +11,33 @@ import secrets
 import yt_dlp
 from fastapi.staticfiles import StaticFiles
 
+# Load configuration from config.env file if it exists
+def load_config():
+    config = {}
+    config_file = "config.env"
+    if os.path.exists(config_file):
+        with open(config_file, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    config[key.strip()] = value.strip()
+    return config
+
+# Load configuration
+config = load_config()
+
+# Configuration Check - API Deactivated
+API_STATUS = config.get("API_STATUS", os.getenv("API_STATUS", "DEACTIVATED"))
+if API_STATUS == "DEACTIVATED":
+    print("⚠️  API DEACTIVATED")
+    print("🔒 This API has been disabled via configuration")
+    print("💡 To enable API, set API_STATUS=ACTIVATED in config.env or environment")
+    exit(1)
+
 # File-based API key storage (since MongoDB might not be available)
 API_KEYS_FILE = "api_keys.json"
-ADMIN_KEY = os.getenv("ADMIN_KEY", "Pratik@143")  # Get from environment or use default
+ADMIN_KEY = config.get("ADMIN_KEY", os.getenv("ADMIN_KEY", "Pratik@143"))  # Get from config or environment
 
 # Initialize API keys storage
 def setup_api_keys():

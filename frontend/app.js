@@ -1,7 +1,7 @@
 // API Configuration
-// For production, point to your domain
-const API_URL = 'https://api.radhaapi.me'; // Production API subdomain
-// const API_URL = 'http://localhost:8000'; // Local development
+// For production, point to your domain or use localhost for local development
+const API_URL = 'http://localhost:8000'; // Local development
+// const API_URL = 'https://your-domain.com/api'; // Production API (update with your domain)
 let API_KEY = localStorage.getItem('musicstream_api_key') || 'your_api_key_here';
 
 // DOM Elements

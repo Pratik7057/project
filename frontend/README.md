@@ -1,17 +1,17 @@
 # MusicStream Frontend
 
-This is the frontend application for the MusicStream API system. It's designed to be accessed at www.Radhapi.me.
+This is the frontend application for the MusicStream API system.
 
 ## Features
 
-- Song search and playback interface
+- Song search and playbook interface
 - API key management
 - Responsive design for desktop and mobile
 - Direct integration with the MusicStream backend API
 
 ## Deployment
 
-This frontend is configured to be deployed on a VPS with a custom domain (www.Radhapi.me).
+This frontend can be deployed locally or on any web server.
 
 ## Configuration
 
@@ -40,46 +40,15 @@ To run this frontend locally:
 
 1. Clone the repository
 2. Modify the API_URL in app.js to point to your local backend
-3. Open index.html in your browser
-
-## VPS Deployment
-
-To deploy this frontend on a VPS, follow these steps:
-
-1. Clone the repository:
-
+3. Open index.html in your browser or use a local server:
    ```bash
-   git clone https://github.com/Radhaapi/Radhaapi-Frontend
-   cd Radhaapi-Frontend
+   python -m http.server -d frontend 8080
    ```
 
-2. Set up Nginx or Apache to serve the static files:
+## Local Deployment
 
-   ```bash
-   # Example Nginx configuration
-   server {
-       listen 80;
-       server_name www.Radhapi.me;
-       root /var/www/Radhaapi-Frontend;
-       index index.html;
-       
-       location / {
-           try_files $uri $uri/ /index.html;
-       }
-   }
-   ```
+This frontend is designed for local development:
 
-3. Configure SSL with Let's Encrypt:
-
-   ```bash
-   sudo certbot --nginx -d www.Radhapi.me
-   ```
-
-4. Upload your files to the server:
-
-   ```bash
-   # Using rsync
-   rsync -avz --exclude 'node_modules' ./ user@your-vps:/var/www/Radhaapi-Frontend/
-   ```
-
-5. Update your DNS settings to point your domain to your VPS IP address.
+1. Make sure the backend is running on http://localhost:8000
+2. Open the frontend files in any web browser
+3. Or use Docker for full containerized deployment with `deploy.bat` or `deploy.sh`
